@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
+<link
+	th:href="@{/webjars/bootstrap-icons/1.7.0/font/bootstrap-icons.css}"
+	rel="stylesheet" />
+
+<script type="text/javascript"
+	th:src="@{/webjars/jquery/3.6.0/dist/jquery.min.js}"></script>
+<script type="text/javascript"
+	th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+<title>log in</title>
+</head>
+
+<body>
+	<div style="background-color: #c0c0c0;" class="section">
+		<div class="container">
+			<div class="row full-height justify-content-center">
+				<div class="col-12 text-center align-self-center py-5">
+					<div class="section pb-5 pt-5 pt-sm-2 text-center">
+						<div class="card-3d-wrap mx-auto">
+							<div class="card-3d-wrapper">
+								<div class="card-front">
+									<div class="center-wrap">
+										<div class="section text-center">
+											<h4 style="color: #c0c0c0;" class="mb-4">Admin</h4>
+											<div class="form-group">
+												<form th:action="@{/login}" method="POST">
+													<div th:if="${param.error}">
+														<p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+													</div>
+													<div th:if="${param.logout}">
+														<p class="text-warning">you have been logged out!</p>
+													</div>
+													<div class="form-group mt-2">
+													 <input class="form-style text-center" type="text" placeholder="Reg. ID" name="regId" style="text-transform: uppercase;"
+														required autocomplete="off" minlength="5" maxlength="20"/>
+												 <i class="input-icon bi bi-person-rolodex"></i>
+											        </div>
+										    	<div class="form-group mt-2">
+												  <input type="password" name="password" required
+													class="form-style text-center" placeholder="Password" minlength="8" maxlength="20"
+													 autocomplete="off"/> <i
+													class="input-icon bi bi-key"></i>
+											   </div>
+											<div>
+											<div class="form-group mt-3 text-light"><input class="" type="checkbox" name="remember-me"/>&nbsp; Remember Me</div>
+										<button  class="btn mt-3"
+												style="color:#c0c0c0;background-color: #000066;" type="submit">log in</button>
+											
+											</div>
+											</form>
+										</div>	
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

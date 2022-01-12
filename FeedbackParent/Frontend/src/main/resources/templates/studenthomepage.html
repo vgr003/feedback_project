@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:replace="fragments :: head">
+
+</head>
+
+<body id="body-pd" class="" style="background: #000">
+
+	<header th:replace="fragments :: header"></header>
+	<div th:replace="fragments :: navbar"></div>
+
+<!--Container Main start-->
+	<div class="height-100" style="background: #000">
+		<h4>Student Home Page</h4>
+		
+		<div>
+			<h6 th:text="${message}" id="message" class="text-danger text-center"></h6>
+		</div>
+		
+	<div class="container">
+	  <div class="row mx-auto p-1 justify-content-center">	
+	
+	     <div th:if="${faculty != null}" th:each="faculty : ${facultyList}"
+	        style="min-width:300px;max-width:400px;"
+	        class="col"> 
+			  <div class="card mx-auto">
+			        <img th:src="@{${faculty.imagePath}}" class="card-img-top" alt="" style="width:170px;height:170px;">
+			        <div class="card-body">
+			            <p class="card-title" th:text="${faculty.firstName}+' '+${faculty.lastName}"></p>
+			            <h5 class="card-text" th:text="${faculty.designation}" style="font-family: cursive;"></h5>
+			            <p class="card-text" th:text="${faculty.department}"></p>
+			            <a th:href="@{'/questions/'+${faculty.id}}" class="btn"><b>Feedback</b></a>
+			        </div>
+			    </div>
+		  </div>  
+		 </div>
+	  </div>
+	  <br>
+	</div>
+<!--Container Main End  -->
+	<script type="text/javascript">
+
+</script>
+</body>
+
+</html>

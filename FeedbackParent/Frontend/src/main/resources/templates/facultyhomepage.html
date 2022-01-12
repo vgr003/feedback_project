@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:replace="fragments :: head">
+
+</head>
+
+<body id="body-pd" class="" style="background: #000">
+
+	<header th:replace="fragments :: header"></header>
+	<div th:replace="fragments :: navbar"></div>
+	   <div class="height-100" style="background: #000">
+		<h4>Faculty Home Page</h4>
+		
+		<div>
+			<h6 th:if="${message != null}"  th:text="${message}" id="message" class="text-danger text-center"></h6>
+		</div>
+		
+		
+	<div class="container" th:object="${faculty}">
+	  <div class="row mx-auto p-1 justify-content-center">	
+	
+	     <div  
+	        style="min-width:300px;max-width:400px;"
+	        class="col">
+			  <div class="card mx-auto">
+			        <img th:src="@{${faculty.imagePath}}" class="card-img-top" alt="IMG" style="width:200px;height:200px;">
+			        <div class="card-body">
+			            <p class="card-title" th:text="${faculty.firstName}+' '+${faculty.lastName}"></p>
+			            <h5 class="card-text" th:text="${faculty.designation}" style="font-family: cursive;"></h5>
+			            <p class="card-text" th:text="${faculty.department}"></p>
+			            <a th:href="@{/faculty/profile}" class="btn"><b>[[${faculty.regId}]]</b></a>
+			        </div>
+			    </div>
+		  </div>
+		 </div><!-- row end  -->
+		 
+     <div class="row">
+
+			    <!-- For demo purpose -->
+			    <div class="col-lg-12 mx-auto mt-4  text-white text-center ">
+			      <h1 class="display-4 mb-2">Feedback</h1>
+			      <h6><span><img style="width:40px;height:40px;border-radius:50%;transform:rotateX(180deg)" th:src="@{/images/thumb-down.jpg}"></span>&nbsp;&nbsp;[[${goodAt}]]</h6>
+			      <h6><span><img style="width:40px;height:40px;border-radius:50%;" th:src="@{/images/thumb-down.jpg}"></span>&nbsp;&nbsp;[[${improveAt}]]</h6>
+			    </div>
+			    <!-- END -->
+			
+			    <div class="card mx-auto col-xl-3 col-lg-6 mb-4"  style="color:#000">
+			      <div class="bg-white rounded-lg p-5 shadow">
+			        <h2 class="h6 font-weight-bold text-center mb-4">Overall progress</h2>
+			        <!-- Progress bar 1 -->
+			        <div class="progress mx-auto" th:data-value="${faculty.average*20}">
+			          <span class="progress-left">
+			                        <span class="progress-bar border-primary"></span>
+			          </span>
+			          <span class="progress-right">
+			                        <span class="progress-bar border-primary"></span>
+			          </span>
+			          <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+			            <div class="h2 font-weight-bold">
+			            <span th:if="${faculty.average == null}" >0</span>
+			            <span th:if="${faculty.average != null}" th:text="${#numbers.formatDecimal(faculty.average * 20, 1, 'DEFAULT', 2, 'DEFAULT')}"></span>
+			            <sup class="small">%</sup>
+			            </div>
+			          </div>
+			        </div>
+			        <!-- END -->
+			      </div>
+			    </div>
+          </div>	
+	  
+	 </div>
+  </div>
+<script type="text/javascript">
+
+</script>
+</body>
+
+</html>
